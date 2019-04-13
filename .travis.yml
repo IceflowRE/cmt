@@ -1,0 +1,32 @@
+language: python
+
+matrix:
+  include:
+  - python: "3.7"  # remove workaround if travis releases 3.7 officially
+    env: PY_VERSION=py37
+    dist: xenial
+    sudo: true
+  - python: "3.8-dev"
+    env: PY_VERSION=py38
+  allow_failures:
+  - python: "3.8-dev"
+
+addons:
+  apt:
+    update: true
+
+install:
+  - pip install --upgrade -e .[dev]
+
+script:
+  - ./scripts/build.sh "$PY_VERSION"
+  - twine check dist/*
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: twine upload -u $PYPI_USER -p $PYPI_PASSWORD --skip-existing dist/*
+    on:
+      branch: master
+      repo: IceflowRE/cmt
+      tags: true
