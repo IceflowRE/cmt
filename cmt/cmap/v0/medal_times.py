@@ -35,9 +35,6 @@ class MedalTimes:
     def __str__(self):
         return f"platin: {self.platin} | gold: {self.gold} | silver: {self.silver} | bronze: {self.bronze}"
 
-    def __len__(self):
-        return len(self.platin) + len(self.gold) + len(self.silver) + len(self.bronze)
-
     def encode(self) -> bytearray:
         """
         Includes the length byte at the beginning.
@@ -45,7 +42,7 @@ class MedalTimes:
         """
         data = bytearray()
         # medal times
-        data.extend(struct.pack('B', self.__len__()))
+        data.extend(struct.pack('B', len(self.platin)))
         # medal platin
         for time in self.platin:
             data.extend(struct.pack('I', time))

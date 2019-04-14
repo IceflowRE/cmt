@@ -39,7 +39,9 @@ optional:
 > nameLen: uByte (1) - [number of characters in mapname]
 > uByte (nameLen) - [mapname as String]
 
-> uByte (2) - [unused bytes]
+> timer enabled : uByte (1) - if the timer will be run in singleplayer
+
+> uByte (1) - [unused byte]
 
 > times : uByte (1) - number of checkpoint times (including medal time)
 
@@ -98,6 +100,7 @@ if(entityType == 128){ //dummy entity
     def __init__(self, data: bytes = None, debug=False):
         super().__init__(0)
         self.name = ""
+        self.timer_enabled = True
         self.medal_times = None
         self.sun_rotation = 0.0
         self.sun_angle = 0.0
@@ -112,6 +115,7 @@ if(entityType == 128){ //dummy entity
         return f"identifier: {self.identifier}\n" \
             f"format version: {self.format_version}\n" \
             f"name: {self.name}\n" \
+            f"timer enabled: {self.timer_enabled}\n" \
             f"medal times: {self.medal_times}\n" \
             f"sun rotation: {self.sun_rotation}\n" \
             f"sun angle: {self.sun_angle}\n" \
@@ -130,13 +134,16 @@ if(entityType == 128){ //dummy entity
         if debug:
             utils.debug_print(data[offset:offset + name_len], "name", self.name, offset)
         offset = 13 + name_len
-        # 2 unused bytes
-        utils.unpack_from('BB', data, offset, ("unused", "unused"), debug)
-        offset += 2
+
+        self.timer_enabled = utils.unpack_from('?', data, offset, ("timer enabled",), debug)
+        offset += 1
+        utils.unpack_from('B', data, offset, ("unused",), debug)
+        offset += 1
 
         # medal times
         self.medal_times = MedalTimes(data, offset, debug)
-        offset += 1 + len(self.medal_times) * 4
+        # medal times * 4 (platin, gold, silver, bronze) * 4 bytes
+        offset += 1 + len(self.medal_times.platin) * 4 * 4
 
         self.sun_rotation = utils.unpack_from('f', data, offset, ("sun rotation",), debug)[0]
         offset += 4
@@ -186,15 +193,17 @@ if(entityType == 128){ //dummy entity
     def encode(self) -> bytearray:
         data = bytearray()
         # file identifier
-        data.extend("celeria_map".encode("utf-8"))
+        data.extend("celaria_map".encode("utf-8"))
         # format version
         data.extend(struct.pack('B', self.format_version))
         # length of name
         data.extend(struct.pack('B', len(self.name)))
         # name
         data.extend(self.name.encode("utf-8"))
-        # unused bytes
-        data.extend(b'\x00\x00')
+        # timer enabled
+        data.extend(struct.pack('?', self.timer_enabled))
+        # unused byte
+        data.extend(b'\x00')
         # medal times, including the length byte
         data.extend(self.medal_times.encode())
         # sun rotation
