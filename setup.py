@@ -9,7 +9,7 @@ with Path('README.rst').open(mode='r', encoding='UTF-8') as reader:
 
 setup(
     name='CMT',
-    version='0.1.0',
+    version='0.1.1',
     description='Celaria Map Toolkit',
     long_description=long_description,
     author='Iceflower S',
