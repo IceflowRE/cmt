@@ -13,7 +13,19 @@ CMT - Celaria Map Toolkit
 
 ----
 
-`Nothing here yet.`
+About
+=====
+
+Supported .cmap formats
+-----------------------
+
++---------+--------+--------+
+| Version | Encode | Decode |
++---------+--------+--------+
+|    0    |   Yes  |   Yes  |
++---------+--------+--------+
+|    1    |   Yes  |   Yes  |
++---------+--------+--------+
 
 ----
 

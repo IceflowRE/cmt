@@ -2,13 +2,13 @@ import struct
 
 from cmt import utils
 from cmt.cmap.a_cmap import ACMap
-from cmt.cmap.v0.entity import Block, Dummy, PlayerStart, Sphere
-from cmt.cmap.v0.medal_times import MedalTimes
+from cmt.cmap.v1.entity import Block, Dummy, PlayerStart, Sphere
+from cmt.cmap.v1.medal_times import CheckpointTimes
 
 
 class CMap(ACMap):
     """
-Celaria .cmap format (version 0) www.celaria.com
+Celaria .cmap format (version 1) www.celaria.com
 
 Datatypes:
 ===============================
@@ -32,11 +32,7 @@ or
 > nameLen : uByte (1) - [number of characters in map name]
 > uByte (nameLen) - [map name as String]
 
-> uByte (1) - boolean, if the timer will be run in singleplayer
-
-> uByte (1) - [unused byte]
-
-> times : uByte (1) - number of checkpoint times (including medal time)
+> times : uByte (1) - number of checkpoint times (including finish line)
 
 > uInt (times) - [checkpoint times for platin]
 > uInt (times) - [checkpoint times for gold]
@@ -44,7 +40,7 @@ or
 > uInt (times) - [checkpoint times for bronze]
 
 > f32 (1) - [sun rotation on Z axis]
-> f32 (1) - [sun height expressed as an angle (between 0 and 90 degrees)]
+> f32 (1) - [sun angle to xy plane (between 0 and 90 degrees)]
 
 > f64 (1) - [preview camera position x]
 > f64 (1) - [preview camera position y]
@@ -52,7 +48,6 @@ or
 > f64 (1) - [preview camera look at position x]
 > f64 (1) - [preview camera look at position y]
 > f64 (1) - [preview camera look at position z]
-
 
 > entityNumber : uInt (1) - [number of entities on the map]
 
@@ -62,7 +57,6 @@ for entity in entityNumber {
     switch(entityType) {
         case 0: // block
             > blockType : uByte (1) - [blockType/color]
-            > uByte (1) - [unused byte]
             > sInt (1) - [position x]
             > sInt (1) - [position y]
             > uInt (1) - [position z]
@@ -78,13 +72,12 @@ for entity in entityNumber {
         case 1: // sphere
             > sInt (1) - [position x]
             > sInt (1) - [position y]
-            > sInt (1) - [position z]
+            > uInt (1) - [position z]
 
         case 2: // player start
-            > uByte (1) - [unused byte]
             > sInt (1) - [position x]
             > sInt (1) - [position y]
-            > sInt (1) - [position z]
+            > uInt (1) - [position z]
             > f32 (1) - [rotation on Z axis]
 
         case 128: // dummy id
@@ -96,14 +89,14 @@ for entity in entityNumber {
             > uInt (1) - [scale y]
             > uInt (1) - [scale z]
             > f32 (1) - [rotation on Z axis]
+    }
 }
     """
 
     def __init__(self, data: bytes = None, debug=False):
-        super().__init__(0)
+        super().__init__(1)
         self.name = ""
-        self.timer_enabled = True
-        self.medal_times = None
+        self.checkpoint_times = None
         self.sun_rotation = 0.0
         self.sun_angle = 0.0
         self.camera_pos = (0.0, 0.0, 0.0)
@@ -117,8 +110,7 @@ for entity in entityNumber {
         return f"identifier: {self.identifier}\n" \
             f"format version: {self.format_version}\n" \
             f"name: {self.name}\n" \
-            f"timer enabled: {self.timer_enabled}\n" \
-            f"medal times: {self.medal_times}\n" \
+            f"checkpoint times: {self.checkpoint_times}\n" \
             f"sun rotation: {self.sun_rotation}\n" \
             f"sun angle: {self.sun_angle}\n" \
             f"camera position: {self.camera_pos}\n" \
@@ -137,15 +129,10 @@ for entity in entityNumber {
             utils.debug_print(data[offset:offset + name_len], "name", self.name, offset)
         offset += name_len
 
-        self.timer_enabled = utils.unpack_from('?', data, offset, ("timer enabled",), debug)
-        offset += 1
-        utils.unpack_from('B', data, offset, ("unused",), debug)
-        offset += 1
-
-        # medal times
-        self.medal_times = MedalTimes(data, offset, debug)
-        # medal times count + medal times * 4 (platin, gold, silver, bronze) * 4 bytes
-        offset += 1 + len(self.medal_times.platin) * 4 * 4
+        # checkpoint times
+        self.checkpoint_times = CheckpointTimes(data, offset, debug)
+        # checkpoint times count + checkpoint times * 4 (platin, gold, silver, bronze) * 4 bytes
+        offset += 1 + 4 * len(self.checkpoint_times.platin) * 4
 
         self.sun_rotation = utils.unpack_from('f', data, offset, ("sun rotation",), debug)[0]
         offset += 4
@@ -202,12 +189,8 @@ for entity in entityNumber {
         data.extend(struct.pack('B', len(self.name)))
         # name
         data.extend(self.name.encode("utf-8"))
-        # timer enabled
-        data.extend(struct.pack('?', self.timer_enabled))
-        # unused byte
-        data.extend(b'\x00')
-        # medal times, including the length byte
-        data.extend(self.medal_times.encode())
+        # checkpoint times, including the length byte before
+        data.extend(self.checkpoint_times.encode())
         # sun rotation
         data.extend(struct.pack('f', self.sun_rotation))
         # sun angle

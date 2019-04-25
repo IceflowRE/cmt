@@ -3,6 +3,7 @@ from pathlib import Path
 
 from cmt import utils
 from cmt.cmap.v0.cmap import CMap as CMap_0
+from cmt.cmap.v1.cmap import CMap as CMap_1
 
 
 def decode(file: Path, debug=False):
@@ -22,6 +23,7 @@ def decode(file: Path, debug=False):
 
     if version == 0:
         return CMap_0(data, debug)
-    # elif version == 1:
+    elif version == 1:
+        return CMap_1(data, debug)
     else:
         raise ValueError(f"cannot read map format version {version}")

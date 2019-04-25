@@ -14,7 +14,7 @@ class BlockType(Enum):
     Checkpoint = 5  # purple
 
 
-class Block(Entity):
+class Block(Enuntity):
     """
 
     :param data:
@@ -23,10 +23,8 @@ class Block(Entity):
     """
 
     def __init__(self, data: bytes, offset: int, debug=False):
-        super().__init__(0, 30)
+        super().__init__(0, struct.calcsize('BiiIIIIf'))
         self.block_type = BlockType(utils.unpack_from('B', data, offset, ("block type",), debug)[0])
-        offset += 1
-        utils.unpack_from('B', data, offset, ("unused",), debug)
         offset += 1
         self.position = utils.unpack_from('iiI', data, offset, ("position x", "position y", "position z"), debug)
         offset += 3 * 4
@@ -53,8 +51,6 @@ class Block(Entity):
         data.extend(struct.pack('B', self.type))
         # block type
         data.extend(struct.pack('B', self.block_type.value))
-        # unused byte
-        data.extend(b'\x00')
         # position
         data.extend(struct.pack('iiI', *self.position))
         # scale
@@ -75,8 +71,8 @@ class Sphere(Entity):
     """
 
     def __init__(self, data: bytes, offset: int, debug=False):
-        super().__init__(1, 12)
-        self.position = utils.unpack_from('iii', data, offset, ("position x", "position y", "position z"), debug)
+        super().__init__(1, struct.calcsize('iiI'))
+        self.position = utils.unpack_from('iiI', data, offset, ("position x", "position y", "position z"), debug)
 
     def __str__(self):
         return f"type: 1 [Sphere]\n" \
@@ -87,7 +83,7 @@ class Sphere(Entity):
         # entity type
         data.extend(struct.pack('B', self.type))
         # position
-        data.extend(struct.pack('iii', *self.position))
+        data.extend(struct.pack('iiI', *self.position))
         return data
 
 
@@ -100,11 +96,8 @@ class PlayerStart(Entity):
     """
 
     def __init__(self, data: bytes, offset: int, debug=False):
-        super().__init__(2, 17)
-        # one unused byte
-        utils.unpack_from('B', data, offset, ("unused",), debug)
-        offset += 1
-        self.position = utils.unpack_from('iii', data, offset, ("position x", "position y", "position z"), debug)
+        super().__init__(2, struct.calcsize('iiIf'))
+        self.position = utils.unpack_from('iiI', data, offset, ("position x", "position y", "position z"), debug)
         offset += 3 * 4
         self.rotation_z = utils.unpack_from('f', data, offset, ("rotation z",), debug)[0]
 
@@ -117,10 +110,8 @@ class PlayerStart(Entity):
         data = bytearray()
         # entity type
         data.extend(struct.pack('B', self.type))
-        # unused byte
-        data.extend(b'\x00')
         # position
-        data.extend(struct.pack('iii', *self.position))
+        data.extend(struct.pack('iiI', *self.position))
         # rotation z
         data.extend(struct.pack('f', self.rotation_z))
         return data
@@ -135,7 +126,7 @@ class Dummy(Entity):
     """
 
     def __init__(self, data: bytes, offset: int, debug=False):
-        super().__init__(128, 29)
+        super().__init__(128, struct.calcsize('iiIIIIf'))
         self.id = utils.unpack_from('B', data, offset, ("id",), debug)[0]
         offset += 1
         self.position = utils.unpack_from('iiI', data, offset, ("position x", "position y", "position z"), debug)
