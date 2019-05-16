@@ -37,7 +37,7 @@ setup(
             'pytest==4.5.0',
             'pytest-cov==2.7.1',
             'twine==1.12.1',
-            'setuptools==41.0.0',
+            'setuptools==41.0.1',
             'wheel==0.33.1',
         ],
     },
