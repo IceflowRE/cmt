@@ -36,9 +36,9 @@ setup(
             'prospector[with_everything]==1.1.6.2',
             'pytest==4.5.0',
             'pytest-cov==2.7.1',
-            'twine==1.12.1',
-            'setuptools==41.0.0',
-            'wheel==0.33.1',
+            'twine==1.13.0',
+            'setuptools==41.0.1',
+            'wheel==0.33.4',
         ],
     },
     package_data={
