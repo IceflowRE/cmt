@@ -3,29 +3,50 @@ CMT - Celaria Map Toolkit
 *************************
 |maintained| |programming language| |license|
 
-|travis| |appveyor|
+|travis| |appveyor| |requirements| |codacy| |codecov|
 
 |pypi|
 
 ----
 
-``<Description English>``
+Celaria Map Toolkit can convert different map format from one into another.
+
+Install via pip:
+
+    pip install cmt
+
+About the usage see:
+
+    cmt --help
 
 ----
 
 About
 =====
 
-Supported .cmap formats
------------------------
+.cmap support
+-------------
 
-+---------+--------+--------+
-| Version | Encode | Decode |
-+---------+--------+--------+
-|    0    |   Yes  |   Yes  |
-+---------+--------+--------+
-|    1    |   Yes  |   Yes  |
-+---------+--------+--------+
+.. class:: center
+
++---------+--------+--------+---------+-----------+---------+
+| Version | Encode | Decode | Convert | Downgrade | Upgrade |
++---------+--------+--------+---------+-----------+---------+
+| 0       | ✔      | ✔      | ✔       |           | ✔       |
++---------+--------+--------+---------+-----------+---------+
+| 1       | ✔      | ✔      | ✔       | ✔         |         |
++---------+--------+--------+---------+-----------+---------+
+
+.ecmap support
+--------------
+
++---------+--------+--------+---------+-----------+---------+
+| Version | Encode | Decode | Convert | Downgrade | Upgrade |
++---------+--------+--------+---------+-----------+---------+
+| 0       | ✔      | ✔      | ✔       |           | ✔       |
++---------+--------+--------+---------+-----------+---------+
+| 1       | ✔      | ✔      | ✔       | ✔         |         |
++---------+--------+--------+---------+-----------+---------+
 
 ----
 
@@ -46,12 +67,24 @@ Credits
 Third Party
 -----------
 
+pytest
+    - `Holger Krekel and others <https://github.com/pytest-dev/pytest/blob/master/AUTHORS>`__
+    - https://github.com/pytest-dev/pytest
+    - `MIT <https://github.com/pytest-dev/pytest/blob/master/LICENSE>`__
+Prospector
+    - `landscapeio <https://github.com/landscapeio>`__
+    - https://github.com/landscapeio/prospector
+    - `GPL-2.0+ <https://github.com/landscapeio/prospector/blob/master/LICENSE>`__
 Setuptools
-    - Jason R Coombs / `Setuptools Developers <https://github.com/orgs/pypa/teams/setuptools-developers>`_
+    - Jason R Coombs / `Setuptools Developers <https://github.com/orgs/pypa/teams/setuptools-developers>`__
     - https://github.com/pypa/setuptools
     - `MIT <https://github.com/pypa/setuptools/blob/master/LICENSE>`__
+twine
+    - `various authors <https://github.com/pypa/twine/blob/master/AUTHORS>`__
+    - https://github.com/pypa/twine
+    - `Apache-2.0 <https://github.com/pypa/twine/blob/master/LICENSE>`__
 wheel
-    - `Charlie Denton <https://github.com/meshy>`_
+    - `Charlie Denton <https://github.com/meshy>`__
     - https://github.com/meshy/pythonwheels
     - `BSD-2-Clause <https://github.com/meshy/pythonwheels/blob/master/LICENSE>`__
 
@@ -89,3 +122,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .. |pypi| image:: https://img.shields.io/pypi/v/cmt.svg
    :target: https://pypi.org/project/cmt/
+
+.. |requirements| image:: https://requires.io/github/IceflowRE/cmt/requirements.svg?branch=master
+   :target: https://requires.io/github/IceflowRE/cmt/requirements/?branch=master
+
+.. |codacy| image:: https://api.codacy.com/project/badge/Grade/a0b5e81fea174ef787b04f6a38ed4cf2
+   :target: https://app.codacy.com/project/IceflowRE/cmt/dashboard
+
+.. |codecov| image:: https://img.shields.io/codecov/c/github/IceflowRE/cmt/master.svg?label=coverage
+   :target: https://codecov.io/gh/IceflowRE/cmt

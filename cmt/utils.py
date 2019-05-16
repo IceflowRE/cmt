@@ -25,6 +25,9 @@ def unpack_from(format_, buffer, offset, what, debug):
     unpacked = struct.unpack_from(format_, buffer, offset)
     if debug:
         part_offset = 0
+        if format_.startswith("@") or format_.startswith("=") or format_.startswith("<") or format_.startswith(
+                ">") or format_.startswith("!"):
+            format_ = format_[1:]
         for idx in range(len(unpacked)):
             add_off = struct.calcsize(format_[idx])
             debug_print(buffer[offset + part_offset:offset + part_offset + add_off], what[idx], unpacked[idx],

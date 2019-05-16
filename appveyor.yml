@@ -17,4 +17,6 @@ build_script:
   - "%PYTHON_DIR%\\python setup.py bdist_wheel --python-tag %PY_VERSION%"
 
 test_script:
+  - "%PYTHON_DIR%\\Scripts\\pytest -v"
+  - "%PYTHON_DIR%\\python setup.py check -v -m -s"
   - "%PYTHON_DIR%\\Scripts\\twine check dist/*"

@@ -2,14 +2,14 @@ language: python
 
 matrix:
   include:
-  - python: "3.7"  # remove workaround if travis releases 3.7 officially
-    env: PY_VERSION=py37
-    dist: xenial
-    sudo: true
-  - python: "3.8-dev"
-    env: PY_VERSION=py38
+    - python: "3.7"  # remove workaround if travis releases 3.7 officially
+      env: PY_VERSION=py37
+      dist: xenial
+      sudo: true
+    - python: "3.8-dev"
+      env: PY_VERSION=py38
   allow_failures:
-  - python: "3.8-dev"
+    - python: "3.8-dev"
 
 addons:
   apt:
@@ -17,10 +17,17 @@ addons:
 
 install:
   - pip install --upgrade -e .[dev]
+  - pip install codacy-coverage codecov
 
 script:
   - ./scripts/build.sh "$PY_VERSION"
+  - pytest -v --cov-config=.coveragerc --cov=cmt --cov-report=xml
+  - python setup.py check -v -m -s
   - twine check dist/*
+
+after_success:
+  - codecov
+  - python-codacy-coverage -v -r coverage.xml
 
 deploy:
   - provider: script

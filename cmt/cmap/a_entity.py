@@ -1,7 +1,7 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
-class Entity(ABC):
+class AEntity(ABC):
     """
     :ivar type: entity type
     :ivar byte_size: size in bytes the entity uses
@@ -11,6 +11,18 @@ class Entity(ABC):
         self.type = type_
         self.byte_size = byte_size
 
+    @classmethod
+    @abstractmethod
+    def decode(cls, data: bytes, offset: int, debug: bool = False) -> 'AEntity':
+        """
+
+        :param data:
+        :param offset: without entity type byte
+        :param debug:
+        """
+        raise NotImplementedError
+
+    @abstractmethod
     def encode(self) -> bytearray:
         """
         Includes the entity type.

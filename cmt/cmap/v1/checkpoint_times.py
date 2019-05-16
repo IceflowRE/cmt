@@ -3,7 +3,7 @@ import struct
 from cmt import utils
 
 
-class MedalTimes:
+class CheckpointTimes:
     def __init__(self):
         self.platin = []
         self.gold = []
@@ -14,27 +14,27 @@ class MedalTimes:
         return f"platin: {self.platin} | gold: {self.gold} | silver: {self.silver} | bronze: {self.bronze}"
 
     @classmethod
-    def decode(cls, data: bytes, offset: int, debug: bool = False) -> 'MedalTimes':
-        m_times = MedalTimes()
-        times = utils.unpack_from('<B', data, offset, ("medal times",), debug)[0]
+    def decode(cls, data: bytes, offset: int, debug: bool = False) -> 'CheckpointTimes':
+        c_times = CheckpointTimes()
+        times = utils.unpack_from('<B', data, offset, ("checkpoint times",), debug)[0]
         offset += 1
         # we do not use iter_unpack because its easier to use the offset debugging
         for i in range(times):
-            m_times.platin.append(utils.unpack_from('<I', data, offset, ("platin time",), debug)[0])
+            c_times.platin.append(utils.unpack_from('<I', data, offset, ("platin time",), debug)[0])
             offset += 4
 
         for i in range(times):
-            m_times.gold.append(utils.unpack_from('<I', data, offset, ("gold time",), debug)[0])
+            c_times.gold.append(utils.unpack_from('<I', data, offset, ("gold time",), debug)[0])
             offset += 4
 
         for i in range(times):
-            m_times.silver.append(utils.unpack_from('<I', data, offset, ("silver time",), debug)[0])
+            c_times.silver.append(utils.unpack_from('<I', data, offset, ("silver time",), debug)[0])
             offset += 4
 
         for i in range(times):
-            m_times.bronze.append(utils.unpack_from('<I', data, offset, ("bronze time",), debug)[0])
+            c_times.bronze.append(utils.unpack_from('<I', data, offset, ("bronze time",), debug)[0])
             offset += 4
-        return m_times
+        return c_times
 
     def encode(self) -> bytearray:
         """
