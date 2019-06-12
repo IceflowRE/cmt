@@ -33,7 +33,7 @@ setup(
     ],
     extras_require={
         'dev': [
-            'prospector[with_everything]==1.1.6.2',
+            'prospector[with_everything]==1.1.6.3',
             'pytest==4.6.2',
             'pytest-cov==2.7.1',
             'twine==1.13.0',
