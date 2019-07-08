@@ -2,8 +2,8 @@ import struct
 
 from cmt import utils
 from cmt.cmap.a_cmap import ACMap
-from cmt.cmap.v1.checkpoint_times import CheckpointTimes
-from cmt.cmap.v1.entity import Block, Dummy, PlayerStart, Sphere
+from cmt.cmap.v1.checkpoint_time import decode_checkpoint_times
+from cmt.cmap.v1.entities import Block, Dummy, PlayerStart, Sphere
 
 
 class CMap(ACMap):
@@ -102,7 +102,7 @@ class CMap(ACMap):
         super().__init__(1)
         self.name = ""
         self.preview_cam_set = False
-        self.checkpoint_times = None
+        self.checkpoint_times = []
         self.sun_rotation = 0.0
         self.sun_angle = 0.0
         self.camera_pos = (0.0, 0.0, 0.0)
@@ -136,9 +136,9 @@ class CMap(ACMap):
         offset += 1
 
         # checkpoint times
-        cmap.checkpoint_times = CheckpointTimes.decode(data, offset, debug)
-        # checkpoint times count + checkpoint times * 4 (platin, gold, silver, bronze) * 4 bytes
-        offset += 1 + 4 * len(cmap.checkpoint_times.platin) * 4
+        cmap.checkpoint_times = decode_checkpoint_times(data, offset, debug)
+        # checkpoint times count + 4 (platin, gold, silver, bronze) * checkpoint times * 4 bytes
+        offset += 1 + 4 * len(cmap.checkpoint_times) * 4
 
         cmap.sun_rotation = utils.unpack_from('<f', data, offset, ("sun rotation",), debug)[0]
         offset += 4
@@ -197,12 +197,17 @@ class CMap(ACMap):
         data.extend(self.name.encode("utf-8"))
         # preview cam set
         data.extend(struct.pack('<?', self.preview_cam_set))
-        # checkpoint times
-        if self.checkpoint_times is not None:
-            data.extend(struct.pack('<B', len(self.checkpoint_times.platin)))
-            data.extend(self.checkpoint_times.encode())
-        else:
-            data.extend(struct.pack('<B', 0))
+        # checkpoint times count
+        data.extend(struct.pack('<B', len(self.checkpoint_times)))
+        if len(self.checkpoint_times) > 0:
+            for time in self.checkpoint_times:
+                data.extend(struct.pack('<I', time.platin))
+            for time in self.checkpoint_times:
+                data.extend(struct.pack('<I', time.gold))
+            for time in self.checkpoint_times:
+                data.extend(struct.pack('<I', time.silver))
+            for time in self.checkpoint_times:
+                data.extend(struct.pack('<I', time.bronze))
         # sun rotation
         data.extend(struct.pack('<f', self.sun_rotation))
         # sun angle

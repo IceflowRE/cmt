@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from enum import Enum, unique
+from typing import Union
 
 
 @unique
@@ -30,3 +31,13 @@ class AMap(ABC):
     @abstractmethod
     def encode(self) -> bytearray:
         raise NotImplementedError
+
+    ''' TODO
+    @abstractmethod
+    def check(self) -> Union[None, str]:
+        """
+        Returns a string with a message if something weird was found. None if nothing.
+        :return:
+        """
+        raise NotImplementedError
+    '''

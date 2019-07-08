@@ -2,8 +2,8 @@ import struct
 
 from cmt import utils
 from cmt.cmap.a_cmap import ACMap
-from cmt.cmap.v0.entity import Block, Dummy, PlayerStart, Sphere
-from cmt.cmap.v0.medal_times import MedalTimes
+from cmt.cmap.v0.entities import Block, Dummy, PlayerStart, Sphere
+from cmt.cmap.v0.medal_time import decode_medal_times
 
 
 class CMap(ACMap):
@@ -102,7 +102,7 @@ class CMap(ACMap):
         super().__init__(0)
         self.name = ""
         self.timer_enabled = True
-        self.medal_times = None
+        self.medal_times = []
         self.sun_rotation = 0.0
         self.sun_angle = 0.0
         self.camera_pos = (0.0, 0.0, 0.0)
@@ -139,9 +139,9 @@ class CMap(ACMap):
         offset += 1
 
         # medal times
-        cmap.medal_times = MedalTimes.decode(data, offset, debug)
-        # medal times count + medal times * 4 (platin, gold, silver, bronze) * 4 bytes
-        offset += 1 + len(cmap.medal_times.platin) * 4 * 4
+        cmap.medal_times = decode_medal_times(data, offset, debug)
+        # medal times count + 4 (platin, gold, silver, bronze) * checkpoint times * 4 bytes
+        offset += 1 + 4 * len(cmap.medal_times) * 4
 
         cmap.sun_rotation = utils.unpack_from('<f', data, offset, ("sun rotation",), debug)[0]
         offset += 4
@@ -204,11 +204,16 @@ class CMap(ACMap):
         # unused byte
         data.extend(b'\x00')
         # medal times
-        if self.medal_times is not None:
-            data.extend(struct.pack('<B', len(self.medal_times.platin)))
-            data.extend(self.medal_times.encode())
-        else:
-            data.extend(struct.pack('<B', 0))
+        data.extend(struct.pack('<B', len(self.medal_times)))
+        if len(self.medal_times) > 0:
+            for time in self.medal_times:
+                data.extend(struct.pack('<I', time.platin))
+            for time in self.medal_times:
+                data.extend(struct.pack('<I', time.gold))
+            for time in self.medal_times:
+                data.extend(struct.pack('<I', time.silver))
+            for time in self.medal_times:
+                data.extend(struct.pack('<I', time.bronze))
         # sun rotation
         data.extend(struct.pack('<f', self.sun_rotation))
         # sun angle

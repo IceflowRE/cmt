@@ -30,17 +30,13 @@ class Converter(AConverter):
             res = CMap_0()
             res.name = source.name
 
-            if source.checkpoint_times is not None:
-                res.medal_times = MedalTimes_0()
-                # convert times, 100 ticks to 60 ticks
-                for time in source.checkpoint_times.platin:
-                    res.medal_times.platin.append(int(time * 0.6))
-                for time in source.checkpoint_times.gold:
-                    res.medal_times.gold.append(int(time * 0.6))
-                for time in source.checkpoint_times.silver:
-                    res.medal_times.silver.append(int(time * 0.6))
-                for time in source.checkpoint_times.bronze:
-                    res.medal_times.bronze.append(int(time * 0.6))
+            for time in source.checkpoint_times:
+                new_time = MedalTime_0()
+                new_time.platin = int(time.platin * 0.6)
+                new_time.gold = int(time.gold * 0.6)
+                new_time.silver = int(time.silver * 0.6)
+                new_time.bronze = int(time.bronze * 0.6)
+                res.medal_times.append(new_time)
 
             res.sun_rotation = source.sun_rotation
             res.sun_angle = source.sun_angle

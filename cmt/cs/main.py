@@ -20,7 +20,7 @@ def main(argv=None):
 
     # TODO: find a better solution for this hard coded metadata
     parser = ArgumentParser(prog='cmt', description='Celaria Map Toolkit')
-    parser.add_argument('-v', '--version', action='version', version='0.2.0')
+    parser.add_argument('-v', '--version', action='version', version='0.3.0.dev1')
 
     subparsers = parser.add_subparsers(required=True, dest='command')
 
