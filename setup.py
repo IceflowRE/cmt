@@ -34,7 +34,7 @@ setup(
     extras_require={
         'dev': [
             'prospector[with_everything]==1.1.6.4',
-            'pytest==4.6.3',
+            'pytest==5.0.1',
             'pytest-cov==2.7.1',
             'twine==1.13.0',
             'setuptools==41.0.1',
