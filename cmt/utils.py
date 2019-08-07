@@ -15,6 +15,7 @@ def to_hex(data):
 def unpack_from(format_, buffer, offset, what, debug):
     """
     Same behaviour as struct.unpack_from.
+
     :param format_:
     :param buffer:
     :param offset:
@@ -40,6 +41,7 @@ class DebugIterUnpack:
     def __init__(self, format_, buffer, what):
         """
         Same behaviour as struct.iter_unpack. Does not support the offset.
+
         :param format_:
         :param buffer:
         :param what: list of tuples of message for every unpacked value

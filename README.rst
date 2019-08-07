@@ -3,7 +3,7 @@ CMT - Celaria Map Toolkit
 *************************
 |maintained| |programming language| |license|
 
-|travis| |appveyor| |requirements| |codacy| |codecov|
+|travis| |appveyor| |readthedocs| |requirements| |codacy| |codecov|
 
 |pypi|
 
@@ -26,8 +26,6 @@ About
 
 .cmap support
 -------------
-
-.. class:: center
 
 +---------+--------+--------+---------+-----------+---------+
 | Version | Encode | Decode | Convert | Downgrade | Upgrade |
@@ -75,10 +73,22 @@ Prospector
     - `landscapeio <https://github.com/landscapeio>`__
     - https://github.com/landscapeio/prospector
     - `GPL-2.0+ <https://github.com/landscapeio/prospector/blob/master/LICENSE>`__
+Read the Docs Sphinx Theme
+    - `Dave Snider <https://github.com/snide>`__
+    - https://github.com/rtfd/sphinx_rtd_theme
+    - `MIT <https://github.com/rtfd/sphinx_rtd_theme/blob/master/LICENSE>`__
 Setuptools
     - Jason R Coombs / `Setuptools Developers <https://github.com/orgs/pypa/teams/setuptools-developers>`__
     - https://github.com/pypa/setuptools
     - `MIT <https://github.com/pypa/setuptools/blob/master/LICENSE>`__
+Sphinx
+    - `the Sphinx team <https://github.com/sphinx-doc/sphinx/blob/master/AUTHORS>`__
+    - https://github.com/sphinx-doc/sphinx
+    - `BSD-2-Clause <https://github.com/sphinx-doc/sphinx/blob/master/LICENSE>`__
+sphinx-autodoc-typehints
+    - `Alex Grönholm <https://github.com/agronholm>`__
+    - https://github.com/agronholm/sphinx-autodoc-typehints
+    - `MIT <https://github.com/agronholm/sphinx-autodoc-typehints/blob/master/LICENSE>`__
 twine
     - `various authors <https://github.com/pypa/twine/blob/master/AUTHORS>`__
     - https://github.com/pypa/twine
@@ -119,6 +129,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .. |appveyor| image:: https://img.shields.io/appveyor/ci/IceflowRE/cmt/master.svg?label=AppVeyor%20CI
     :target: https://ci.appveyor.com/project/IceflowRE/cmt/branch/master
+
+.. |readthedocs| image:: https://readthedocs.org/projects/cmt/badge/?version=latest
+   :target: https://cmt.readthedocs.io/en/latest/index.html
 
 .. |pypi| image:: https://img.shields.io/pypi/v/cmt.svg
    :target: https://pypi.org/project/cmt/

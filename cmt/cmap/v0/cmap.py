@@ -10,92 +10,118 @@ class CMap(ACMap):
     """
     Celaria .cmap format (version 0)
 
-    Datatypes:
-    ===============================
-    uByte > unsigned byte (1 byte)
-    uShort > unsigned short (2 bytes)
-    uInt > unsigned int (4 bytes)
-    sShort > signed short (2 bytes)
-    sInt > signed int (4 bytes)
-    f32 > float (4 bytes)
-    f64 > double (8 bytes)
+    **Datatypes**
 
-    > <datatype> (<number of datatypes in sequence>) // <description>
+    .. list-table::
+        :header-rows: 1
+
+        * - Abbreviation
+          - Type
+          - Byte size
+        * - uByte
+          - unsigned byte
+          - 1
+        * - uShort
+          - unsigned short
+          - 2
+        * - uInt
+          - unsigned int
+          - 4
+        * - sShort
+          - signed short
+          - 2
+        * - sInt
+          - signed int
+          - 4
+        * - f32
+          - float
+          - 4
+        * - f64
+          - double
+          - 8
+
+    **Description format**
+
+    ``> <datatype> (<number of datatypes in sequence>) // <description>``
+
     or
-    > [<variable name>] : <datatype> (<number of datatypes in sequence>) // <description>
 
-    ===============================
+    ``> [<variable name>] : <datatype> (<number of datatypes in sequence>) // <description>``
 
-    > uByte (11) // string identifier
-    > uByte (1) // version
+    **Format**
 
-    > nameLen : uByte (1) // number of characters in map name
-    > uByte (nameLen) // map name as String
+    .. code-block:: none
 
-    > uByte (1) - boolean, if the timer will be run in singleplayer
+        > uByte (11) // string identifier
+        > uByte (1) // version
 
-    > uByte (1) // unused byte
+        > nameLen : uByte (1) // number of characters in map name
+        > uByte (nameLen) // map name as String
 
-    > times : uByte (1) - number of checkpoint times (including medal time)
+        > uByte (1) - boolean, if the timer will be run in singleplayer
 
-    > uInt (times) // checkpoint times for platin
-    > uInt (times) // checkpoint times for gold
-    > uInt (times) // checkpoint times for silver
-    > uInt (times) // checkpoint times for bronze
+        > uByte (1) // unused byte
 
-    > f32 (1) // sun rotation on Z axis
-    > f32 (1) // sun height expressed as an angle (between 0 and 90 degrees)
+        > times : uByte (1) - number of checkpoint times (including medal time)
 
-    > f64 (1) // preview camera position x
-    > f64 (1) // preview camera position y
-    > f64 (1) // preview camera position z
-    > f64 (1) // preview camera look at position x
-    > f64 (1) // preview camera look at position y
-    > f64 (1) // preview camera look at position z
+        > uInt (times) // checkpoint times for platin
+        > uInt (times) // checkpoint times for gold
+        > uInt (times) // checkpoint times for silver
+        > uInt (times) // checkpoint times for bronze
 
-    > entityNumber : uInt (1) // number of entities on the map
+        > f32 (1) // sun rotation on Z axis
+        > f32 (1) // sun height expressed as an angle (between 0 and 90 degrees)
 
-    for entity in entityNumber {
-        > entityType : uInt (1) // entityType
+        > f64 (1) // preview camera position x
+        > f64 (1) // preview camera position y
+        > f64 (1) // preview camera position z
+        > f64 (1) // preview camera look at position x
+        > f64 (1) // preview camera look at position y
+        > f64 (1) // preview camera look at position z
 
-        switch(entityType) {
-            case 0: // block
-                > blockType : uByte (1) // blockType/color
-                > uByte (1) // unused byte
-                > sInt (1) // position x
-                > sInt (1) // position y
-                > uInt (1) // position z
-                > uInt (1) // scale x
-                > uInt (1) // scale y
-                > uInt (1) // scale z
-                > f32 (1) // rotation on Z axis
+        > entityNumber : uInt (1) // number of entities on the map
 
-                if (blockType == 5){ // checkpoint block
-                    > uByte (1) // checkpoint Number
-                }
+        for entity in entityNumber {
+            > entityType : uInt (1) // entityType
 
-            case 1: // sphere
-                > sInt (1) // position x
-                > sInt (1) // position y
-                > sInt (1) // position z
+            switch(entityType) {
+                case 0: // block
+                    > blockType : uByte (1) // blockType/color
+                    > uByte (1) // unused byte
+                    > sInt (1) // position x
+                    > sInt (1) // position y
+                    > uInt (1) // position z
+                    > uInt (1) // scale x
+                    > uInt (1) // scale y
+                    > uInt (1) // scale z
+                    > f32 (1) // rotation on Z axis
 
-            case 2: // player start
-                > uByte (1) // unused byte
-                > sInt (1) // position x
-                > sInt (1) // position y
-                > sInt (1) // position z
-                > f32 (1) // rotation on Z axis
+                    if (blockType == 5){ // checkpoint block
+                        > uByte (1) // checkpoint Number
+                    }
 
-            case 128: // dummy id
-                > uByte (1) // ID
-                > sInt (1) // position x
-                > sInt (1) // position y
-                > uInt (1) // position z
-                > uInt (1) // scale x
-                > uInt (1) // scale y
-                > uInt (1) // scale z
-                > f32 (1) // rotation on Z axis
-    }
+                case 1: // sphere
+                    > sInt (1) // position x
+                    > sInt (1) // position y
+                    > sInt (1) // position z
+
+                case 2: // player start
+                    > uByte (1) // unused byte
+                    > sInt (1) // position x
+                    > sInt (1) // position y
+                    > sInt (1) // position z
+                    > f32 (1) // rotation on Z axis
+
+                case 128: // dummy id
+                    > uByte (1) // ID
+                    > sInt (1) // position x
+                    > sInt (1) // position y
+                    > uInt (1) // position z
+                    > uInt (1) // scale x
+                    > uInt (1) // scale y
+                    > uInt (1) // scale z
+                    > f32 (1) // rotation on Z axis
+        }
     """
 
     def __init__(self):

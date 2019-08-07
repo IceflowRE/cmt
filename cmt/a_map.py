@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from enum import Enum, unique
-from typing import Union
 
 
 @unique
@@ -9,7 +8,7 @@ class MapType(Enum):
     ECMAP = "celaria_edi"
 
     @staticmethod
-    def from_str(text):
+    def from_str(text) -> 'MapType':
         if text in [MapType.CMAP.value, MapType.CMAP.name, MapType.CMAP.name.lower()]:
             return MapType.CMAP
         elif text in [MapType.ECMAP.value, MapType.ECMAP.name, MapType.ECMAP.name.lower()]:
@@ -20,6 +19,10 @@ class MapType(Enum):
 
 class AMap(ABC):
     def __init__(self, identifier: MapType, version: int):
+        """
+        :vartype identifier: MapType
+        :vartype version: int
+        """
         self.identifier = identifier
         self.format_version = version
 

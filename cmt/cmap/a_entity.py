@@ -26,6 +26,5 @@ class AEntity(ABC):
     def encode(self) -> bytearray:
         """
         Includes the entity type.
-        :return:
         """
         raise NotImplementedError

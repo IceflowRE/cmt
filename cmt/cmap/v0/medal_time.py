@@ -17,10 +17,10 @@ class MedalTime:
 def decode_medal_times(data: bytes, offset: int, debug: bool = False) -> List[MedalTime]:
     """
     Must start with the length byte.
+
     :param data:
     :param offset:
     :param debug:
-    :return:
     """
     times = utils.unpack_from('<B', data, offset, ("checkpoint times",), debug)[0]
     offset += 1

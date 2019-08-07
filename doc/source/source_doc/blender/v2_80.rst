@@ -1,0 +1,43 @@
+*****************
+cmt.blender.v2_80
+*****************
+
+cmt.blender.v2_80.import_menu
+=============================
+
+.. automodule:: cmt.blender.v2_80.import_menu
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cmt.blender.v2_80.object_panel
+==============================
+
+.. automodule:: cmt.blender.v2_80.object_panel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cmt.blender.v2_80.scene_panel
+=============================
+
+.. automodule:: cmt.blender.v2_80.scene_panel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cmt.blender.v2_80.utils
+=======================
+
+.. automodule:: cmt.blender.v2_80.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cmt.blender.v2_80.viewport_add_menu
+===================================
+
+.. automodule:: cmt.blender.v2_80.viewport_add_menu
+   :members:
+   :undoc-members:
+   :show-inheritance:
