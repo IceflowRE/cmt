@@ -6,4 +6,4 @@ test_data = Path("./tests/data/")
 
 
 def map_file(type_: MapType, version: int) -> Path:
-    return test_data.joinpath(f"v{version}.{type_.name}")
+    return test_data.joinpath(f"v{version}.{type_.name.lower()}")
