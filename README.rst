@@ -64,7 +64,7 @@ Credits
     - `Iceflower S <https://github.com/IceflowRE>`__
         - iceflower@gmx.de
 - Format Definition
-    - https://www.celaria.com/
+    - http://www.celaria.com/
 
 Third Party
 -----------

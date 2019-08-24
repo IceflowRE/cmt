@@ -5,12 +5,12 @@ import math
 
 
 def to_bl_location(location: Tuple[float, float, float]) -> Tuple[float, float, float]:
-    # celera's Y coordinate is mirrored to the Blender
+    # celarias Y coordinate is mirrored to the Blender
     return location[0] / 100, location[1] / -100, location[2] / 100
 
 
 def to_cmt_position(location: Tuple[float, float, float]) -> Tuple[float, float, float]:
-    # celera's Y coordinate is mirrored to the Blender
+    # celarias Y coordinate is mirrored to the Blender
     return location[0] * 100, location[1] * -100, location[2] * 100
 
 
