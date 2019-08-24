@@ -10,6 +10,10 @@ from cmt.ecmap.v1 import *
 
 
 def decode(file: Path, debug=False) -> Union[CMap_0, CMap_1, ECMap_0, ECMap_1]:
+    """
+
+    :raises ValueError: something failed
+    """
     with file.open("rb") as reader:
         data = reader.read()
 

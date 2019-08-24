@@ -1,5 +1,6 @@
 import struct
 from enum import Enum
+from typing import Tuple
 
 from cmt import utils
 from cmt.cmap.a_entity import AEntity
@@ -17,11 +18,11 @@ class BlockType(Enum):
 class Block(AEntity):
     def __init__(self):
         super().__init__(0, 30)
-        self.block_type = None
-        self.position = (0.0, 0.0, 0)
-        self.scale = (0, 0, 0)
-        self.rotation_z = 0
-        self.checkpoint_nr = None
+        self.block_type: BlockType = None
+        self.position: Tuple[float, float, int] = (0.0, 0.0, 0)
+        self.scale: Tuple[int, int, int] = (0, 0, 0)
+        self.rotation_z: int = 0
+        self.checkpoint_nr: int = None
 
     def __str__(self):
         return f"type: 0 [Block]\n" \
@@ -73,7 +74,7 @@ class Block(AEntity):
 class Sphere(AEntity):
     def __init__(self):
         super().__init__(1, 12)
-        self.position = (0.0, 0.0, 0.0)
+        self.position: Tuple[float, float, float] = (0.0, 0.0, 0.0)
 
     def __str__(self):
         return f"type: 1 [Sphere]\n" \
@@ -98,8 +99,8 @@ class Sphere(AEntity):
 class PlayerStart(AEntity):
     def __init__(self):
         super().__init__(2, 17)
-        self.position = (0.0, 0.0, 0.0)
-        self.rotation_z = 0.0
+        self.position: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+        self.rotation_z: float = 0.0
 
     def __str__(self):
         return f"type: 2 [PlayerStart]\n" \
@@ -133,10 +134,10 @@ class PlayerStart(AEntity):
 class Dummy(AEntity):
     def __init__(self):
         super().__init__(128, 29)
-        self.id = None
-        self.position = (0.0, 0.0, 0)
-        self.scale = (0, 0, 0)
-        self.rotation_z = 0.0
+        self.id: int = None
+        self.position: Tuple[float, float, int] = (0.0, 0.0, 0)
+        self.scale: Tuple[int, int, int] = (0, 0, 0)
+        self.rotation_z: float = 0.0
 
     def __str__(self):
         return f"type: 128 [Dummy]\n" \

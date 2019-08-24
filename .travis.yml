@@ -24,6 +24,8 @@ script:
   - pytest -v --cov-config=.coveragerc --cov=cmt --cov-report=xml
   - python setup.py check -v -m -s
   - twine check dist/*
+  - sphinx-build -b html ./doc/source/ ./build/doc/html/
+  - sphinx-build -b linkcheck ./doc/source/ ./build/doc/linkcheck/
 
 after_success:
   - codecov

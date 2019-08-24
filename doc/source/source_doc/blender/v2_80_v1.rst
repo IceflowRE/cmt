@@ -1,0 +1,19 @@
+********************
+cmt.blender.v2_80.v1
+********************
+
+cmt.blender.v2_80.v1.add_objects
+================================
+
+.. automodule:: cmt.blender.v2_80.v1.add_objects
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cmt.blender.v2_80.v1.codec
+==========================
+
+.. automodule:: cmt.blender.v2_80.v1.codec
+   :members:
+   :undoc-members:
+   :show-inheritance:

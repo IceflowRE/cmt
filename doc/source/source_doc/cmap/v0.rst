@@ -1,0 +1,27 @@
+***********
+cmt.cmap.v0
+***********
+
+cmt.cmap.v0.cmap
+================
+
+.. automodule:: cmt.cmap.v0.cmap
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cmt.cmap.v0.entities
+====================
+
+.. automodule:: cmt.cmap.v0.entities
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cmt.cmap.v0.medal_time
+======================
+
+.. automodule:: cmt.cmap.v0.medal_time
+   :members:
+   :undoc-members:
+   :show-inheritance:

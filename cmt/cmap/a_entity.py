@@ -8,8 +8,8 @@ class AEntity(ABC):
     """
 
     def __init__(self, type_: int, byte_size: int):
-        self.type = type_
-        self.byte_size = byte_size
+        self.type: int = type_
+        self.byte_size: int = byte_size
 
     @classmethod
     @abstractmethod
@@ -26,6 +26,5 @@ class AEntity(ABC):
     def encode(self) -> bytearray:
         """
         Includes the entity type.
-        :return:
         """
         raise NotImplementedError

@@ -9,41 +9,67 @@ class ECMap(AECMap):
     """
     Celaria .ecmap format (version 1)
 
-    Datatypes:
-    ===============================
-    uByte > unsigned byte (1 byte)
-    uShort > unsigned short (2 bytes)
-    uInt > unsigned int (4 bytes)
-    sShort > signed short (2 bytes)
-    sInt > signed int (4 bytes)
-    f32 > float (4 bytes)
-    f64 > double (8 bytes)
+    **Datatypes**
 
-    > <datatype> (<number of datatypes in sequence>) // <description>
+    .. list-table::
+        :header-rows: 1
+
+        * - Abbreviation
+          - Type
+          - Byte size
+        * - uByte
+          - unsigned byte
+          - 1
+        * - uShort
+          - unsigned short
+          - 2
+        * - uInt
+          - unsigned int
+          - 4
+        * - sShort
+          - signed short
+          - 2
+        * - sInt
+          - signed int
+          - 4
+        * - f32
+          - float
+          - 4
+        * - f64
+          - double
+          - 8
+
+    **Description format**
+
+    ``> <datatype> (<number of datatypes in sequence>) // <description>``
+
     or
-    > [<variable name>] : <datatype> (<number of datatypes in sequence>) // <description>
+
+    ``> [<variable name>] : <datatype> (<number of datatypes in sequence>) // <description>``
 
     Difference regarding to the .cmap begins with a '!!'.
 
-    ===============================
+    **Format**
 
-    > uByte (11) // string identifier
-    > uByte (1) // version
+    .. code-block:: none
 
-    > nameLen : uByte (1) // number of characters in map name
-    > uByte (nameLen) // map name as String
+        > uByte (11) // string identifier
+        > uByte (1) // version
 
-    !! // checkpoint times are missing
+        > nameLen : uByte (1) // number of characters in map name
+        > uByte (nameLen) // map name as String
 
-    > f32 (1) // sun rotation on Z axis
-    > f32 (1) // sun angle to xy plane (between 0 and 90 degrees)
+        !! // checkpoint times are missing
 
-    ... same as cmap v1 ...
+        > f32 (1) // sun rotation on Z axis
+        > f32 (1) // sun angle to xy plane (between 0 and 90 degrees)
+
+        ... same as cmap v1 ...
     """
 
     def __init__(self):
         super().__init__(1)
-        self.cmap = CMap_1()
+        self.cmap: CMap_1 = CMap_1()
 
     def __str__(self):
         return f"identifier: {self.identifier.name}\n" \

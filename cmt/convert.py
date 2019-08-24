@@ -10,6 +10,10 @@ from cmt.ecmap.v1 import *
 
 
 def _get_converter(version: int) -> AConverter:
+    """
+
+    :raises ValueError: something failed
+    """
     if version == 0:
         return Converter_0()
     elif version == 1:
@@ -19,6 +23,10 @@ def _get_converter(version: int) -> AConverter:
 
 def convert(source: Union[CMap_0, CMap_1, ECMap_0, ECMap_1], version: int, target: MapType) -> Union[
     CMap_0, CMap_1, ECMap_0, ECMap_1]:
+    """
+
+    :raises ValueError: something failed
+    """
     res = source
     while res.format_version != version:
         if res.format_version > version:
