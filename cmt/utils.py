@@ -1,18 +1,19 @@
 import struct
+from typing import Any, Tuple
 
 
-def debug_print(data, what, value, offset=None):
+def debug_print(data: bytes, what: str, value: Any, offset: int = None):
     if offset is None:
         print(f"{to_hex(data)} | ?? - {what} - {value}")
     else:
         print(f"{to_hex(data)} | 0x{hex(offset)[2:].upper()} - {what} - {value}")
 
 
-def to_hex(data):
+def to_hex(data: bytes):
     return ' '.join(["{:02x}".format(x) for x in data]).upper()
 
 
-def unpack_from(format_, buffer, offset, what, debug):
+def unpack_from(format_: str, buffer: bytes, offset: int, what: Tuple[str, ...], debug: bool):
     """
     Same behaviour as struct.unpack_from.
 
@@ -38,7 +39,7 @@ def unpack_from(format_, buffer, offset, what, debug):
 
 
 class DebugIterUnpack:
-    def __init__(self, format_, buffer, what):
+    def __init__(self, format_: str, buffer: bytes, what: Tuple[str, ...]):
         """
         Same behaviour as struct.iter_unpack. Does not support the offset.
 

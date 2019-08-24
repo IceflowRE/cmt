@@ -1,8 +1,10 @@
 import struct
+from typing import List, Tuple
 
 from cmt import utils
 from cmt.cmap.a_cmap import ACMap
-from cmt.cmap.v1.checkpoint_time import decode_checkpoint_times
+from cmt.cmap.a_entity import AEntity
+from cmt.cmap.v1.checkpoint_time import decode_checkpoint_times, CheckpointTime
 from cmt.cmap.v1.entities import Block, Dummy, PlayerStart, Sphere
 
 
@@ -126,14 +128,14 @@ class CMap(ACMap):
 
     def __init__(self):
         super().__init__(1)
-        self.name = ""
-        self.preview_cam_set = False
-        self.checkpoint_times = []
-        self.sun_rotation = 0.0
-        self.sun_angle = 0.0
-        self.camera_pos = (0.0, 0.0, 0.0)
-        self.camera_look = (0.0, 0.0, 0.0)
-        self.entities = []
+        self.name: str = ""
+        self.preview_cam_set: bool = True
+        self.checkpoint_times: List[CheckpointTime] = []
+        self.sun_rotation: float = 0.0
+        self.sun_angle: float = 0.0
+        self.camera_pos: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+        self.camera_look: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+        self.entities: List[AEntity] = []
 
     def __str__(self):
         return f"identifier: {self.identifier.name}\n" \

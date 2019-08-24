@@ -69,7 +69,7 @@ class ECMap(AECMap):
 
     def __init__(self):
         super().__init__(0)
-        self.cmap = CMap_0()
+        self.cmap: CMap_0 = CMap_0()
 
     def __str__(self):
         return f"identifier: {self.identifier.name}\n" \

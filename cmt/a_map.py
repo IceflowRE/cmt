@@ -23,8 +23,8 @@ class AMap(ABC):
         :vartype identifier: MapType
         :vartype version: int
         """
-        self.identifier = identifier
-        self.format_version = version
+        self.identifier: MapType = identifier
+        self.format_version: int = version
 
     @classmethod
     @abstractmethod

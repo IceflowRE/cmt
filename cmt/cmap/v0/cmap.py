@@ -1,9 +1,11 @@
 import struct
+from typing import List, Tuple
 
 from cmt import utils
 from cmt.cmap.a_cmap import ACMap
+from cmt.cmap.a_entity import AEntity
 from cmt.cmap.v0.entities import Block, Dummy, PlayerStart, Sphere
-from cmt.cmap.v0.medal_time import decode_medal_times
+from cmt.cmap.v0.medal_time import decode_medal_times, MedalTime
 
 
 class CMap(ACMap):
@@ -126,14 +128,14 @@ class CMap(ACMap):
 
     def __init__(self):
         super().__init__(0)
-        self.name = ""
-        self.timer_enabled = True
-        self.medal_times = []
-        self.sun_rotation = 0.0
-        self.sun_angle = 0.0
-        self.camera_pos = (0.0, 0.0, 0.0)
-        self.camera_look = (0.0, 0.0, 0.0)
-        self.entities = []
+        self.name: str = ""
+        self.timer_enabled: bool = True
+        self.medal_times: List[MedalTime] = []
+        self.sun_rotation: float = 0.0
+        self.sun_angle: float = 0.0
+        self.camera_pos: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+        self.camera_look: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+        self.entities: List[AEntity] = []
 
     def __str__(self):
         return f"identifier: {self.identifier.name}\n" \

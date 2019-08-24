@@ -5,10 +5,10 @@ from cmt import utils
 
 class CheckpointTime:
     def __init__(self, platin: int = 0, gold: int = 0, silver: int = 0, bronze: int = 0):
-        self.platin = platin
-        self.gold = gold
-        self.silver = silver
-        self.bronze = bronze
+        self.platin: int = platin
+        self.gold: int = gold
+        self.silver: int = silver
+        self.bronze: int = bronze
 
     def __str__(self):
         return f"platin: {self.platin} | gold: {self.gold} | silver: {self.silver} | bronze: {self.bronze}"
