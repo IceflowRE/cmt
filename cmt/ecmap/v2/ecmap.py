@@ -1,13 +1,13 @@
 import struct
 
 from cmt import utils
-from cmt.cmap.v0 import *
+from cmt.cmap.v1 import *
 from cmt.ecmap.a_ecmap import AECMap
 
 
 class ECMap(AECMap):
     """
-    Celaria .ecmap format (version 0)
+    Celaria .ecmap format (version 1)
 
     **Datatypes**
 
@@ -49,7 +49,7 @@ class ECMap(AECMap):
 
     Difference regarding to the .cmap begins with a '!!'.
 
-    Comparing to CMap v0.
+    Comparing to CMap v1.
 
     **Format**
 
@@ -61,27 +61,34 @@ class ECMap(AECMap):
         > nameLen : uByte (1) // number of characters in map name
         > uByte (nameLen) // map name as String
 
+        !! > uByte (1) // boolean, previewCam_set
+
+        > uByte (1) // unused - gamemode
+
         !! // checkpoint times are missing
 
         > f32 (1) // sun rotation on Z axis
         > f32 (1) // sun angle to xy plane (between 0 and 90 degrees)
 
-        ... same as cmap v0 ...
+        ... same as cmap v1 ...
     """
 
     def __init__(self):
-        super().__init__(0)
-        self.cmap: CMap_0 = CMap_0()
+        super().__init__(2)
+        self.cmap: CMap_1 = CMap_1()
+        self.preview_cam_set: bool = False
 
     def __str__(self):
         return f"identifier: {self.identifier.name}\n" \
                f"format version: {self.format_version}\n" \
+               f"preview cam set: {self.preview_cam_set}\n" \
                f"::cmap::\n" + \
                str(self.cmap)
 
     @classmethod
     def decode(cls, data: bytes, offset: int, debug: bool = False) -> 'ECMAP':
-        cmap = CMap_0()
+        ecmap = ECMap()
+        cmap = CMap_1()
 
         name_len = utils.unpack_from('<B', data, offset, ("name length",), debug)[0]
         offset += 1
@@ -91,9 +98,10 @@ class ECMap(AECMap):
             utils.debug_print(data[offset:offset + name_len], "name", cmap.name, offset)
         offset += name_len
 
-        cmap.timer_enabled = utils.unpack_from('<?', data, offset, ("timer enabled",), debug)
+        ecmap.preview_cam_set = utils.unpack_from('<?', data, offset, ("preview cam set",), debug)[0]
         offset += 1
-        utils.unpack_from('<B', data, offset, ("unused",), debug)
+
+        utils.unpack_from('<B', data, offset, ("unused (gamemode)",), debug)
         offset += 1
 
         cmap.sun_rotation = utils.unpack_from('<f', data, offset, ("sun rotation",), debug)[0]
@@ -115,24 +123,23 @@ class ECMap(AECMap):
         offset += 4
 
         ent_done = 0
-
         while ent_done < ent_count:
             ent_type = utils.unpack_from('<B', data, offset, ("entity type",), debug)[0]
             offset += 1
             if ent_type == 0:
-                cur_ent = Block_0.decode(data, offset, debug)
+                cur_ent = Block_1.decode(data, offset, debug)
                 cmap.entities.append(cur_ent)
                 offset += cur_ent.byte_size
             elif ent_type == 1:
-                cur_ent = Sphere_0.decode(data, offset, debug)
+                cur_ent = Sphere_1.decode(data, offset, debug)
                 cmap.entities.append(cur_ent)
                 offset += cur_ent.byte_size
             elif ent_type == 2:
-                cur_ent = PlayerStart_0.decode(data, offset, debug)
+                cur_ent = PlayerStart_1.decode(data, offset, debug)
                 cmap.entities.append(cur_ent)
                 offset += cur_ent.byte_size
             elif ent_type == 128:
-                cur_ent = Dummy_0.decode(data, offset, debug)
+                cur_ent = Dummy_1.decode(data, offset, debug)
                 cmap.entities.append(cur_ent)
                 offset += cur_ent.byte_size
             else:
@@ -143,7 +150,6 @@ class ECMap(AECMap):
         if offset != len(data):
             raise ValueError("Not all bytes were consumed")
 
-        ecmap = ECMap()
         ecmap.cmap = cmap
         return ecmap
 
@@ -157,10 +163,10 @@ class ECMap(AECMap):
         data.extend(struct.pack('<B', len(self.cmap.name)))
         # name
         data.extend(self.cmap.name.encode("utf-8"))
-        # timer enabled
-        data.extend(struct.pack('<?', self.cmap.timer_enabled))
-        # unused byte
-        data.extend(b'\x00')
+        # preview cam set
+        data.extend(struct.pack('<?', self.preview_cam_set))
+        # unused byte - gamemode
+        data.extend(b'\x01')
         # sun rotation
         data.extend(struct.pack('<f', self.cmap.sun_rotation))
         # sun angle

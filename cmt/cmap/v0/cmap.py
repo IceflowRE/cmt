@@ -215,6 +215,8 @@ class CMap(ACMap):
             ent_done += 1
         if debug:
             print(offset, " / ", len(data), " consumed")
+        if offset != len(data):
+            raise ValueError("Not all bytes were consumed")
         return cmap
 
     def encode(self) -> bytearray:

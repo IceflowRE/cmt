@@ -1,39 +1,36 @@
-from typing import Union
-
 from cmt.a_converter import AConverter
-from cmt.a_map import MapType
-from cmt.cmap.v0 import *
-from cmt.cmap.v1 import *
+from cmt.a_map import AMap, MapType
 from cmt.converter import *
-from cmt.ecmap.v0 import *
-from cmt.ecmap.v1 import *
 
 
-def _get_converter(version: int) -> AConverter:
+def _get_converter(map_type: MapType, version: int) -> AConverter:
     """
-
     :raises ValueError: something failed
     """
-    if version == 0:
-        return Converter_0()
-    elif version == 1:
-        return Converter_1()
-    raise ValueError(f"Converter for version {version} does not exist.")
+    if map_type == MapType.CMAP and version == 0:
+        return Converter_cmap_0()
+    elif map_type == MapType.CMAP and version == 1:
+        return Converter_cmap_1()
+    elif map_type == MapType.ECMAP and version == 0:
+        return Converter_ecmap_0()
+    elif map_type == MapType.ECMAP and version == 1:
+        return Converter_ecmap_1()
+    elif map_type == MapType.ECMAP and version == 2:
+        return Converter_ecmap_2()
+    raise ValueError(f"Converter for {map_type.name} {version} does not exist.")
 
 
-def convert(source: Union[CMap_0, CMap_1, ECMap_0, ECMap_1], version: int, target: MapType) -> Union[
-    CMap_0, CMap_1, ECMap_0, ECMap_1]:
+def convert(source: AMap, version: int, target: MapType) -> AMap:
     """
-
     :raises ValueError: something failed
     """
     res = source
     while res.format_version != version:
         if res.format_version > version:
-            res = _get_converter(res.format_version).downgrade(res)
+            res = _get_converter(res.identifier, res.format_version).downgrade(res)
         else:
-            res = _get_converter(res.format_version).upgrade(res)
+            res = _get_converter(res.identifier, res.format_version).upgrade(res)
 
     if res.identifier != target:
-        return _get_converter(res.format_version).convert_to(res, target)
+        res = _get_converter(res.identifier, res.format_version).convert(res)
     return res

@@ -3,14 +3,23 @@ import filecmp
 import pytest
 
 import cmt
-from tests.conftest import map_types, map_versions
+from cmt.a_map import MapType
+from tests.const import map_file
 
 
-@pytest.mark.parametrize("map_type", map_types)
-@pytest.mark.parametrize("version", map_versions)
-def test_decode_encode(version, map_type, map_files, tmp_path):
-    trg = tmp_path.joinpath("encoded" + map_type.name)
-    origin = map_files[version, map_type]
-    cmap = cmt.decode(origin, debug=False)
-    cmt.encode(cmap, trg)
+@pytest.mark.parametrize("version", [0, 1])
+def test_cmap(version, tmp_path):
+    origin = map_file(MapType.CMAP, version)
+    trg = tmp_path.joinpath("encoded.cmap")
+    map_ = cmt.decode(origin, debug=False)
+    cmt.encode(map_, trg)
+    assert filecmp.cmp(origin, trg, shallow=False)
+
+
+@pytest.mark.parametrize("version", [0, 1, 2])
+def test_ecmap(version, tmp_path):
+    origin = map_file(MapType.ECMAP, version)
+    trg = tmp_path.joinpath("encoded.ecmap")
+    map_ = cmt.decode(origin, debug=False)
+    cmt.encode(map_, trg)
     assert filecmp.cmp(origin, trg, shallow=False)

@@ -49,6 +49,8 @@ class ECMap(AECMap):
 
     Difference regarding to the .cmap begins with a '!!'.
 
+    Comparing to CMap v1.
+
     **Format**
 
     .. code-block:: none
@@ -58,6 +60,8 @@ class ECMap(AECMap):
 
         > nameLen : uByte (1) // number of characters in map name
         > uByte (nameLen) // map name as String
+
+        > uByte (1) // unused - gamemode
 
         !! // checkpoint times are missing
 
@@ -73,8 +77,8 @@ class ECMap(AECMap):
 
     def __str__(self):
         return f"identifier: {self.identifier.name}\n" \
-                   f"format version: {self.format_version}\n" \
-                   f"::cmap::\n" + \
+               f"format version: {self.format_version}\n" \
+               f"::cmap::\n" + \
                str(self.cmap)
 
     @classmethod
@@ -89,7 +93,7 @@ class ECMap(AECMap):
             utils.debug_print(data[offset:offset + name_len], "name", cmap.name, offset)
         offset += name_len
 
-        cmap.preview_cam_set = utils.unpack_from('<?', data, offset, ("preview cam set",), debug)[0]
+        utils.unpack_from('<B', data, offset, ("unused (gamemode)",), debug)
         offset += 1
 
         cmap.sun_rotation = utils.unpack_from('<f', data, offset, ("sun rotation",), debug)[0]
@@ -135,6 +139,8 @@ class ECMap(AECMap):
             ent_done += 1
         if debug:
             print(offset, " / ", len(data), " consumed")
+        if offset != len(data):
+            raise ValueError("Not all bytes were consumed")
 
         ecmap = ECMap()
         ecmap.cmap = cmap
@@ -150,8 +156,8 @@ class ECMap(AECMap):
         data.extend(struct.pack('<B', len(self.cmap.name)))
         # name
         data.extend(self.cmap.name.encode("utf-8"))
-        # preview cam set
-        data.extend(struct.pack('<?', self.cmap.preview_cam_set))
+        # unused byte - gamemode
+        data.extend(b'\x01')
         # sun rotation
         data.extend(struct.pack('<f', self.cmap.sun_rotation))
         # sun angle

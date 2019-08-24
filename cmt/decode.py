@@ -1,17 +1,16 @@
 from pathlib import Path
-from typing import Union
 
 from cmt import utils
-from cmt.a_map import MapType
+from cmt.a_map import AMap, MapType
 from cmt.cmap.v0 import *
 from cmt.cmap.v1 import *
 from cmt.ecmap.v0 import *
 from cmt.ecmap.v1 import *
+from cmt.ecmap.v2 import *
 
 
-def decode(file: Path, debug=False) -> Union[CMap_0, CMap_1, ECMap_0, ECMap_1]:
+def decode(file: Path, debug: bool = False) -> AMap:
     """
-
     :raises ValueError: something failed
     """
     with file.open("rb") as reader:
@@ -38,6 +37,8 @@ def decode(file: Path, debug=False) -> Union[CMap_0, CMap_1, ECMap_0, ECMap_1]:
             return ECMap_0.decode(data, offset, debug)
         elif version == 1:
             return ECMap_1.decode(data, offset, debug)
+        elif version == 2:
+            return ECMap_2.decode(data, offset, debug)
         else:
             raise ValueError(f"reading .ecmap version {version} is not supported")
     else:

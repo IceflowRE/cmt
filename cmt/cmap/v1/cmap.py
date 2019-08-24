@@ -60,7 +60,7 @@ class CMap(ACMap):
         > nameLen : uByte (1) // number of characters in map name
         > uByte (nameLen) // map name as String
 
-        > uByte (1) // boolean, previewCam_set
+        > uByte (1) // unused - gamemode
 
         > uByte (1) // number of checkpoint times (including finish line)
 
@@ -160,7 +160,7 @@ class CMap(ACMap):
             utils.debug_print(data[offset:offset + name_len], "name", cmap.name, offset)
         offset += name_len
 
-        cmap.preview_cam_set = utils.unpack_from('<?', data, offset, ("preview cam set",), debug)[0]
+        utils.unpack_from('<?', data, offset, ("unused (gamemode)",), debug)
         offset += 1
 
         # checkpoint times
@@ -211,6 +211,8 @@ class CMap(ACMap):
             ent_done += 1
         if debug:
             print(offset, " / ", len(data), " consumed")
+        if offset != len(data):
+            raise ValueError("Not all bytes were consumed")
         return cmap
 
     def encode(self) -> bytearray:
@@ -223,8 +225,8 @@ class CMap(ACMap):
         data.extend(struct.pack('<B', len(self.name)))
         # name
         data.extend(self.name.encode("utf-8"))
-        # preview cam set
-        data.extend(struct.pack('<?', self.preview_cam_set))
+        # unused byte - gamemode
+        data.extend(b'\x01')
         # checkpoint times count
         data.extend(struct.pack('<B', len(self.checkpoint_times)))
         if len(self.checkpoint_times) > 0:

@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 
-from cmt.a_map import AMap, MapType
+from cmt.a_map import AMap
 
 
 class AConverter(ABC):
     @staticmethod
     @abstractmethod
-    def convert_to(source: AMap, target: MapType) -> AMap:
+    def convert(source: AMap) -> AMap:
         """
         Convert to the other map format of same version.
         """
