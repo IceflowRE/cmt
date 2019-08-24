@@ -48,7 +48,7 @@ About
 | 2       | ✔      | ✔      | ✖*      | ✔         |         |
 +---------+--------+--------+---------+-----------+---------+
 
-*: Theoretically its possible to convert to v1, but will fail now to missing path finding implementation. See `Issue <https://github.com/IceflowRE/cmt/issues/20>`__.
+\*: Theoretically its possible to convert to v1, but will fail now to missing path finding implementation. See `Issue <https://github.com/IceflowRE/cmt/issues/20>`__.
 
 ----
 
@@ -74,13 +74,13 @@ pytest
     - https://github.com/pytest-dev/pytest
     - `MIT <https://github.com/pytest-dev/pytest/blob/master/LICENSE>`__
 Prospector
-    - `landscapeio <https://github.com/landscapeio>`__
-    - https://github.com/landscapeio/prospector
-    - `GPL-2.0+ <https://github.com/landscapeio/prospector/blob/master/LICENSE>`__
+    - `PyCQA <https://github.com/PyCQA>`__
+    - https://github.com/PyCQA/prospector
+    - `GPL-2.0+ <https://github.com/PyCQA/prospector/blob/master/LICENSE>`__
 Read the Docs Sphinx Theme
     - `Dave Snider <https://github.com/snide>`__
-    - https://github.com/rtfd/sphinx_rtd_theme
-    - `MIT <https://github.com/rtfd/sphinx_rtd_theme/blob/master/LICENSE>`__
+    - https://github.com/readthedocs/sphinx_rtd_theme
+    - `MIT <https://github.com/readthedocs/sphinx_rtd_theme/blob/master/LICENSE>`__
 Setuptools
     - Jason R Coombs / `Setuptools Developers <https://github.com/orgs/pypa/teams/setuptools-developers>`__
     - https://github.com/pypa/setuptools
@@ -105,7 +105,7 @@ wheel
 Disclaimer
 ----------
 
-This software is not official supported by https://www.celaria.com/.
+This software is not official supported by http://www.celaria.com/.
 
 License
 -------
@@ -138,7 +138,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
    :target: https://cmt.readthedocs.io/en/latest/index.html
 
 .. |pypi| image:: https://img.shields.io/pypi/v/cmt.svg
-   :target: https://pypi.org/project/cmt/
+   :target: https://pypi.org/project/CMT/
 
 .. |requirements| image:: https://requires.io/github/IceflowRE/cmt/requirements.svg?branch=master
    :target: https://requires.io/github/IceflowRE/cmt/requirements/?branch=master
