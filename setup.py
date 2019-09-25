@@ -39,7 +39,7 @@ setup(
             'Sphinx==2.2.0',
             'sphinx-autodoc-typehints==1.8.0',
             'sphinx_rtd_theme==0.4.3',
-            'twine==1.15.0',
+            'twine==2.0.0',
             'setuptools==41.2.0',
             'wheel==0.33.6',
         ],
