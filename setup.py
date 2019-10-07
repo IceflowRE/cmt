@@ -35,7 +35,7 @@ setup(
         'dev': [
             'prospector[with_everything]==1.1.7',
             'pytest==5.1.3',
-            'pytest-cov==2.7.1',
+            'pytest-cov==2.8.1',
             'Sphinx==2.2.0',
             'sphinx-autodoc-typehints==1.8.0',
             'sphinx_rtd_theme==0.4.3',
