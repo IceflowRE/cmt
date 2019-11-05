@@ -37,7 +37,7 @@ setup(
             'pytest==5.1.3',
             'pytest-cov==2.7.1',
             'Sphinx==2.2.0',
-            'sphinx-autodoc-typehints==1.8.0',
+            'sphinx-autodoc-typehints==1.10.1',
             'sphinx_rtd_theme==0.4.3',
             'twine==2.0.0',
             'setuptools==41.2.0',
