@@ -5,9 +5,8 @@ from cmt.ecmap.v2 import *
 
 class Converter(AConverter):
     @staticmethod
-    def convert(source: ECMap_2) -> 'CMap_2':
-        raise ValueError(
-            f"Converting {source.identifier.name} {source.format_version} to CMap {source.format_version} is not supported.")
+    def convert(source: ECMap_2) -> 'CMap_1':
+        return source.cmap
 
     @staticmethod
     def downgrade(source: ECMap_2) -> ECMap_1:

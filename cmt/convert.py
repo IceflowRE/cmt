@@ -22,15 +22,16 @@ def _get_converter(map_type: MapType, version: int) -> AConverter:
 
 def convert(source: AMap, version: int, target: MapType) -> AMap:
     """
+    First convert to the target type and down/upgrades to the correct version.
     :raises ValueError: something failed
     """
     res = source
+    if res.identifier != target:
+        res = _get_converter(res.identifier, res.format_version).convert(res)
+
     while res.format_version != version:
         if res.format_version > version:
             res = _get_converter(res.identifier, res.format_version).downgrade(res)
         else:
             res = _get_converter(res.identifier, res.format_version).upgrade(res)
-
-    if res.identifier != target:
-        res = _get_converter(res.identifier, res.format_version).convert(res)
     return res

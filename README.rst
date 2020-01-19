@@ -45,10 +45,8 @@ About
 +---------+--------+--------+---------+-----------+---------+
 | 1       | ✔      | ✔      | v1      | ✔         | ✔       |
 +---------+--------+--------+---------+-----------+---------+
-| 2       | ✔      | ✔      | ✖*      | ✔         |         |
+| 2       | ✔      | ✔      | v1      | ✔         |         |
 +---------+--------+--------+---------+-----------+---------+
-
-\*: Theoretically its possible to convert to v1, but will fail now to missing path finding implementation. See `Issue <https://github.com/IceflowRE/cmt/issues/20>`__.
 
 ----
 
