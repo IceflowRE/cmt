@@ -1,5 +1,3 @@
-from typing import Union
-
 from cmt.a_converter import AConverter
 from cmt.cmap.v1 import *
 from cmt.ecmap.v0 import *

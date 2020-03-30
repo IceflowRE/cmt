@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import struct
 from typing import List, Tuple
 
@@ -139,18 +141,18 @@ class CMap(ACMap):
 
     def __str__(self):
         return f"identifier: {self.identifier.name}\n" \
-            f"format version: {self.format_version}\n" \
-            f"name: {self.name}\n" \
-            f"timer enabled: {self.timer_enabled}\n" \
-            f"medal times: {self.medal_times}\n" \
-            f"sun rotation: {self.sun_rotation}\n" \
-            f"sun angle: {self.sun_angle}\n" \
-            f"camera position: {self.camera_pos}\n" \
-            f"camera look: {self.camera_look}\n" \
-            f"entities: {len(self.entities)}"
+               f"format version: {self.format_version}\n" \
+               f"name: {self.name}\n" \
+               f"timer enabled: {self.timer_enabled}\n" \
+               f"medal times: {self.medal_times}\n" \
+               f"sun rotation: {self.sun_rotation}\n" \
+               f"sun angle: {self.sun_angle}\n" \
+               f"camera position: {self.camera_pos}\n" \
+               f"camera look: {self.camera_look}\n" \
+               f"entities: {len(self.entities)}"
 
     @classmethod
-    def decode(cls, data: bytes, offset: int, debug: bool = False) -> 'CMAP':
+    def decode(cls, data: bytes, offset: int, debug: bool = False) -> CMap:
         cmap = cls()
 
         name_len = utils.unpack_from('<B', data, offset, ("name length",), debug)[0]
