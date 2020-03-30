@@ -3,7 +3,7 @@ CMT - Celaria Map Toolkit
 *************************
 |maintained| |programming language| |license|
 
-|travis| |appveyor| |readthedocs| |requirements| |codacy| |codecov|
+|travis| |readthedocs| |requirements| |codacy| |codecov|
 
 |pypi|
 
@@ -64,42 +64,6 @@ Credits
 - Format Definition
     - http://www.celaria.com/
 
-Third Party
------------
-
-pytest
-    - `Holger Krekel and others <https://github.com/pytest-dev/pytest/blob/master/AUTHORS>`__
-    - https://github.com/pytest-dev/pytest
-    - `MIT <https://github.com/pytest-dev/pytest/blob/master/LICENSE>`__
-Prospector
-    - `PyCQA <https://github.com/PyCQA>`__
-    - https://github.com/PyCQA/prospector
-    - `GPL-2.0+ <https://github.com/PyCQA/prospector/blob/master/LICENSE>`__
-Read the Docs Sphinx Theme
-    - `Dave Snider <https://github.com/snide>`__
-    - https://github.com/readthedocs/sphinx_rtd_theme
-    - `MIT <https://github.com/readthedocs/sphinx_rtd_theme/blob/master/LICENSE>`__
-Setuptools
-    - Jason R Coombs / `Setuptools Developers <https://github.com/orgs/pypa/teams/setuptools-developers>`__
-    - https://github.com/pypa/setuptools
-    - `MIT <https://github.com/pypa/setuptools/blob/master/LICENSE>`__
-Sphinx
-    - `the Sphinx team <https://github.com/sphinx-doc/sphinx/blob/master/AUTHORS>`__
-    - https://github.com/sphinx-doc/sphinx
-    - `BSD-2-Clause <https://github.com/sphinx-doc/sphinx/blob/master/LICENSE>`__
-sphinx-autodoc-typehints
-    - `Alex Grönholm <https://github.com/agronholm>`__
-    - https://github.com/agronholm/sphinx-autodoc-typehints
-    - `MIT <https://github.com/agronholm/sphinx-autodoc-typehints/blob/master/LICENSE>`__
-twine
-    - `various authors <https://github.com/pypa/twine/blob/master/AUTHORS>`__
-    - https://github.com/pypa/twine
-    - `Apache-2.0 <https://github.com/pypa/twine/blob/master/LICENSE>`__
-wheel
-    - `Charlie Denton <https://github.com/meshy>`__
-    - https://github.com/meshy/pythonwheels
-    - `BSD-2-Clause <https://github.com/meshy/pythonwheels/blob/master/LICENSE>`__
-
 Disclaimer
 ----------
 
@@ -128,9 +92,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .. |travis| image:: https://img.shields.io/travis/com/IceflowRE/cmt/master.svg?label=Travis%20CI
    :target: https://travis-ci.com/IceflowRE/cmt
-
-.. |appveyor| image:: https://img.shields.io/appveyor/ci/IceflowRE/cmt/master.svg?label=AppVeyor%20CI
-    :target: https://ci.appveyor.com/project/IceflowRE/cmt/branch/master
 
 .. |readthedocs| image:: https://readthedocs.org/projects/cmt/badge/?version=latest
    :target: https://cmt.readthedocs.io/en/latest/index.html

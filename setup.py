@@ -3,17 +3,18 @@ from pathlib import Path
 
 from setuptools import find_packages, setup
 
-# get long description
 from cmt import static_data
 
+# get long description
 with Path('README.rst').open(mode='r', encoding='UTF-8') as reader:
-    long_description = reader.read()
+    LONG_DESCRIPTION = reader.read()
 
 setup(
     name=static_data.NAME,
     version=static_data.VERSION,
     description=static_data.DESCRIPTION,
-    long_description=long_description,
+    long_description_content_type='text/x-rst',
+    long_description=LONG_DESCRIPTION,
     author=static_data.AUTHOR,
     author_email=static_data.AUTHOR_EMAIL,
     license='MIT',
@@ -33,19 +34,18 @@ setup(
     ],
     extras_require={
         'dev': [
-            'prospector[with_everything]==1.2.0',
-            'pytest==5.3.3',
+            'flake8==3.7.9',
+            'pylint==2.4.4',
+            'pyroma==2.6',
+            'pytest==5.4.1',
             'pytest-cov==2.8.1',
-            'Sphinx==2.3.1',
+            'Sphinx==2.4.4',
             'sphinx-autodoc-typehints==1.10.3',
             'sphinx_rtd_theme==0.4.3',
             'twine==3.1.1',
-            'setuptools==45.1.0',
-            'wheel==0.33.6',
+            'setuptools==46.1.3',
+            'wheel==0.34.2',
         ],
-    },
-    package_data={
-
     },
     include_package_data=True,
     zip_safe=True,

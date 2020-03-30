@@ -3,5 +3,5 @@
 
 rm -rf ./build/doc/
 
-sphinx-build -b html ./doc/source/ ./build/doc/html/
-#sphinx-build -b linkcheck ./doc/source/ ./build/doc/linkcheck/
+sphinx-build -b html ./doc/ ./build/doc/html/
+#sphinx-build -b linkcheck ./doc/ ./build/doc/linkcheck/
