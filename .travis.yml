@@ -38,7 +38,7 @@ after_success:
 
 deploy:
   - provider: script
-    script: python setup.py sdist bdist_wheel && twine upload -u $PYPI_USER -p $PYPI_PASSWORD --skip-existing dist/*
+    script: twine upload -u $PYPI_USER -p $PYPI_PASSWORD --skip-existing dist/*
     on:
       branch: master
       repo: IceflowRE/cmt
