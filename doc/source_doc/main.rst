@@ -17,3 +17,4 @@ Reference material.
     ecmap
     ecmap/v0
     ecmap/v1
+    ecmap/v2

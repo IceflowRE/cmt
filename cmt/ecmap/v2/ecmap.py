@@ -7,7 +7,7 @@ from cmt.ecmap.a_ecmap import AECMap
 
 class ECMap(AECMap):
     """
-    Celaria .ecmap format (version 1)
+    Celaria .ecmap format (version 2)
 
     **Datatypes**
 
