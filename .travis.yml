@@ -26,7 +26,7 @@ script:
   - flake8 ./cmt
   - pylint --rcfile=setup.cfg ./cmt/ || true
   - pyroma .
-  - pytest -v --cov-config=.coveragerc --cov=cmt --cov-report=xml --cov-report html
+  - pytest -v --cov-config=setup.cfg --cov=cmt --cov-report term --cov-report=xml --cov-report html
   - python setup.py check -v -m -s
   - twine check dist/*
   - sphinx-build -b html -j auto -T -E -a ./doc/ ./build/doc/html/
