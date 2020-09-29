@@ -99,11 +99,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .. |pypi| image:: https://img.shields.io/pypi/v/cmt.svg
    :target: https://pypi.org/project/CMT/
 
-.. |requirements| image:: https://requires.io/github/IceflowRE/cmt/requirements.svg?branch=master
-   :target: https://requires.io/github/IceflowRE/cmt/requirements/?branch=master
+.. |requirements| image:: https://requires.io/github/IceflowRE/cmt/requirements.svg?branch=main
+   :target: https://requires.io/github/IceflowRE/cmt/requirements/?branch=main
 
 .. |codacy| image:: https://api.codacy.com/project/badge/Grade/a0b5e81fea174ef787b04f6a38ed4cf2
    :target: https://app.codacy.com/project/IceflowRE/cmt/dashboard
 
-.. |codecov| image:: https://img.shields.io/codecov/c/github/IceflowRE/cmt/master.svg?label=coverage
+.. |codecov| image:: https://img.shields.io/codecov/c/github/IceflowRE/cmt/main.svg?label=coverage
    :target: https://codecov.io/gh/IceflowRE/cmt
