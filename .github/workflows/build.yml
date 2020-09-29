@@ -28,13 +28,6 @@ jobs:
           pip install codecov
           cmt --version
 
-      - name: Install test plugin
-        shell: bash
-        run: |
-          cd test-plugin
-          pip install --upgrade -e .
-          cd ..
-
       - name: Build
         shell: bash
         run: |
