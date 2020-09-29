@@ -3,7 +3,7 @@ CMT - Celaria Map Toolkit
 *************************
 |maintained| |programming language| |license|
 
-|travis| |readthedocs| |requirements| |codacy| |codecov|
+|github actions| |readthedocs| |requirements| |codacy| |codecov|
 
 |pypi|
 
@@ -90,8 +90,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .. |license| image:: https://img.shields.io/badge/License-MIT-blue.svg
    :target: https://opensource.org/licenses/MIT
 
-.. |travis| image:: https://img.shields.io/travis/com/IceflowRE/cmt/master.svg?label=Travis%20CI
-   :target: https://travis-ci.com/IceflowRE/cmt
+.. |github actions| image:: https://github.com/IceflowRE/cmt/workflows/Build/badge.svg
+   :target: https://github.com/IceflowRE/cmt/actions
 
 .. |readthedocs| image:: https://readthedocs.org/projects/cmt/badge/?version=latest
    :target: https://cmt.readthedocs.io/en/latest/index.html
