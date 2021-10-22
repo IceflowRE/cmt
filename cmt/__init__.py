@@ -1,8 +1,6 @@
-from cmt import static_data
-
+from cmt import meta
+from cmt.codec import decode, encode
 from cmt.convert import convert
-from cmt.decode import decode
-from cmt.encode import encode
 
 __all__ = ["convert", "decode", "encode"]
-__version__ = static_data.VERSION
+__version__ = meta.VERSION

@@ -1,5 +1,6 @@
 from cmt.a_converter import AConverter
 from cmt.cmap.v0 import *
+from cmt.converter.cmap_v0 import Converter as Converter_cmap_0
 from cmt.ecmap.v0 import *
 from cmt.ecmap.v1 import *
 
@@ -19,5 +20,5 @@ class Converter(AConverter):
     @staticmethod
     def upgrade(source: ECMap_0) -> ECMap_1:
         res = ECMap_1()
-        res.cmap = Converter.upgrade(source.cmap)
+        res.cmap = Converter_cmap_0.upgrade(source.cmap)
         return res

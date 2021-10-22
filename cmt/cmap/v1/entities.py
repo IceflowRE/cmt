@@ -19,7 +19,7 @@ class Block(AEntity):
     def __init__(self):
         super().__init__(0, struct.calcsize('<BiiIIIIf'))
         self.block_type: BlockType = None
-        self.position: Tuple[float, float, int] = (0.0, 0.0, 0)
+        self.position: Tuple[int, int, int] = (0, 0, 0)
         self.scale: Tuple[int, int, int] = (0, 0, 0)
         self.rotation_z: float = 0.0
         self.checkpoint_nr: int = None
@@ -70,7 +70,7 @@ class Block(AEntity):
 class Sphere(AEntity):
     def __init__(self):
         super().__init__(1, struct.calcsize('<iiI'))
-        self.position: Tuple[float, float, int] = (0.0, 0.0, 0)
+        self.position: Tuple[int, int, int] = (0, 0, 0)
 
     def __str__(self):
         return f"type: 1 [Sphere]\n" \
@@ -95,7 +95,7 @@ class Sphere(AEntity):
 class PlayerStart(AEntity):
     def __init__(self):
         super().__init__(2, struct.calcsize('<BiiIf'))
-        self.position: Tuple[float, float, int] = (0.0, 0.0, 0)
+        self.position: Tuple[int, int, int] = (0, 0, 0)
         self.rotation_z: float = 0.0
 
     def __str__(self):
@@ -132,7 +132,7 @@ class Dummy(AEntity):
     def __init__(self):
         super().__init__(128, struct.calcsize('<BiiIIIIf'))
         self.id: int = None
-        self.position: Tuple[float, float, int] = (0.0, 0.0, 0)
+        self.position: Tuple[int, int, int] = (0, 0, 0)
         self.scale: Tuple[int, int, int] = (0, 0, 0)
         self.rotation_z: float = 0.0
 

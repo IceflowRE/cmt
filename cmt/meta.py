@@ -8,7 +8,7 @@ NAME = "CMT"
 #: long name of this program
 LONG_NAME = "Celaria Map Toolkit"
 #: version in PEP440 format
-VERSION = '0.3.0'
+VERSION = '0.4.0'
 #: author
 AUTHOR = 'Iceflower S'
 #: author email

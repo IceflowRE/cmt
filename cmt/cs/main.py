@@ -4,6 +4,7 @@ from argparse import ArgumentParser
 from pathlib import Path
 
 import cmt
+from cmt import meta
 from cmt.a_map import MapType
 
 
@@ -19,8 +20,8 @@ def main(argv=None):
         argv = sys.argv[1:]
 
     # TODO: find a better solution for this hard coded metadata
-    parser = ArgumentParser(prog='cmt', description='Celaria Map Toolkit')
-    parser.add_argument('-v', '--version', action='version', version='0.3.0.dev1')
+    parser = ArgumentParser(prog='cmt', description=meta.LONG_NAME)
+    parser.add_argument('-v', '--version', action='version', version=meta.VERSION)
 
     subparsers = parser.add_subparsers(required=True, dest='command')
 
@@ -30,7 +31,7 @@ def main(argv=None):
                                 help='Input file.')
     convert_parser.add_argument(dest='type', type=str, choices=[t.name.lower() for t in MapType],
                                 help='Map type to convert to.')
-    convert_parser.add_argument(dest='version', type=int, choices=[0, 1],
+    convert_parser.add_argument(dest='version', type=int,
                                 help='Map version to convert to.')
     convert_parser.add_argument(dest='output', type=Path,
                                 help='Output file.')

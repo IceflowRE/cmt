@@ -2,27 +2,30 @@ from cmt.a_converter import AConverter
 from cmt.a_map import AMap, MapType
 from cmt.converter import *
 
+_CONVERTER_MAP = {
+    (MapType.CMAP, 0): Converter_cmap_0,
+    (MapType.CMAP, 1): Converter_cmap_1,
+    (MapType.CMAP, 2): Converter_cmap_2,
+    (MapType.ECMAP, 0): Converter_ecmap_0,
+    (MapType.ECMAP, 1): Converter_ecmap_1,
+    (MapType.ECMAP, 2): Converter_ecmap_2,
+    (MapType.ECMAP, 4): Converter_ecmap_4,
+}
+
 
 def _get_converter(map_type: MapType, version: int) -> AConverter:
     """
     :raises ValueError: something failed
     """
-    if map_type == MapType.CMAP and version == 0:
-        return Converter_cmap_0()
-    elif map_type == MapType.CMAP and version == 1:
-        return Converter_cmap_1()
-    elif map_type == MapType.ECMAP and version == 0:
-        return Converter_ecmap_0()
-    elif map_type == MapType.ECMAP and version == 1:
-        return Converter_ecmap_1()
-    elif map_type == MapType.ECMAP and version == 2:
-        return Converter_ecmap_2()
-    raise ValueError(f"Converter for {map_type.name} {version} does not exist.")
+    conv = _CONVERTER_MAP.get((map_type, version), None)
+    if conv is None:
+        raise ValueError(f"Converter for {map_type.name} {version} does not exist.")
+    return conv()
 
 
 def convert(source: AMap, version: int, target: MapType) -> AMap:
     """
-    First convert to the target type and down/upgrades to the correct version.
+    First convert to the target type and down/upgrade to the correct version.
     :raises ValueError: something failed
     """
     res = source

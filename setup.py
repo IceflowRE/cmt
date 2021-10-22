@@ -3,22 +3,22 @@ from pathlib import Path
 
 from setuptools import find_packages, setup
 
-from cmt import static_data
+from cmt import meta
 
 # get long description
 with Path('README.rst').open(mode='r', encoding='UTF-8') as reader:
     LONG_DESCRIPTION = reader.read()
 
 setup(
-    name=static_data.NAME,
-    version=static_data.VERSION,
-    description=static_data.DESCRIPTION,
+    name=meta.NAME,
+    version=meta.VERSION,
+    description=meta.DESCRIPTION,
     long_description_content_type='text/x-rst',
     long_description=LONG_DESCRIPTION,
-    author=static_data.AUTHOR,
-    author_email=static_data.AUTHOR_EMAIL,
+    author=meta.AUTHOR,
+    author_email=meta.AUTHOR_EMAIL,
     license='MIT',
-    url=static_data.PROJECT_URL,
+    url=meta.PROJECT_URL,
     classifiers=[
         'Programming Language :: Python :: 3.7',
         'License :: OSI Approved :: MIT License',
@@ -34,17 +34,17 @@ setup(
     ],
     extras_require={
         'dev': [
-            'flake8==3.8.3',
-            'pylint==2.6.0',
-            'pyroma==2.6',
-            'pytest==6.1.0',
-            'pytest-cov==2.10.1',
-            'Sphinx==3.2.1',
-            'sphinx-autodoc-typehints==1.11.0',
-            'sphinx_rtd_theme==0.5.0',
-            'twine==3.2.0',
-            'setuptools==46.1.3',
-            'wheel==0.35.1',
+            'flake8>=3.9.2',
+            'pylint>=2.11.1',
+            'pyroma>=3.2',
+            'pytest>=6.2.5',
+            'pytest-cov>=2.12.1',
+            'setuptools>=58.2.0',
+            'Sphinx>=4.2.0',
+            'sphinx-autodoc-typehints>=1.12.0',
+            'sphinx_rtd_theme>=1.0.0',
+            'twine>=3.4.2',
+            'wheel>=0.37.0',
         ],
     },
     include_package_data=True,

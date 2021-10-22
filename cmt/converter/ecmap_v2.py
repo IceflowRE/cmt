@@ -1,6 +1,8 @@
 from cmt.a_converter import AConverter
+from cmt.converter.cmap_v1 import Converter as Converter_cmap_1
 from cmt.ecmap.v1 import *
 from cmt.ecmap.v2 import *
+from cmt.ecmap.v4 import *
 
 
 class Converter(AConverter):
@@ -15,8 +17,7 @@ class Converter(AConverter):
         return res
 
     @staticmethod
-    def upgrade(source: ECMap_2) -> 'ECMap_3':
-        raise ValueError(
-            f"Upgrading {source.identifier.name} {source.format_version} to"
-            f" {source.identifier.name} {source.format_version + 1} is not supported."
-        )
+    def upgrade(source: ECMap_2) -> ECMap_4:
+        res = ECMap_4()
+        res.cmap = Converter_cmap_1.upgrade(source.cmap)
+        return res

@@ -5,7 +5,7 @@ import sphinx_rtd_theme
 
 sys.path.insert(0, str(Path('../../').resolve()))
 
-from cmt import static_data
+from cmt import meta
 
 extensions = [
     'sphinx.ext.autodoc',
@@ -24,8 +24,7 @@ project = 'Celaria Map Toolkit'
 author = 'Iceflower S'
 copyright = '2019-present, Iceflower S'
 title = project + ' Documentation'
-version = static_data.VERSION
-release = '0.2.0'
+version = meta.VERSION
 
 language = None  # english
 pygments_style = 'sphinx'

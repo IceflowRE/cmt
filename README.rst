@@ -3,7 +3,7 @@ CMT - Celaria Map Toolkit
 *************************
 |maintained| |programming language| |license|
 
-|github actions| |readthedocs| |requirements| |codacy| |codecov|
+|github actions| |readthedocs| |requirements| |codecov|
 
 |pypi|
 
@@ -32,7 +32,9 @@ About
 +---------+--------+--------+---------+-----------+---------+
 | 0       | ✔      | ✔      | v0      |           | ✔       |
 +---------+--------+--------+---------+-----------+---------+
-| 1       | ✔      | ✔      | v1      | ✔         |         |
+| 1       | ✔      | ✔      | v1      | ✔         | ✔       |
++---------+--------+--------+---------+-----------+---------+
+| 2       | ✔      | ✔      | v4      | ✔         |         |
 +---------+--------+--------+---------+-----------+---------+
 
 .ecmap support
@@ -45,7 +47,9 @@ About
 +---------+--------+--------+---------+-----------+---------+
 | 1       | ✔      | ✔      | v1      | ✔         | ✔       |
 +---------+--------+--------+---------+-----------+---------+
-| 2       | ✔      | ✔      | v1      | ✔         |         |
+| 2       | ✔      | ✔      | v1      | ✔         | ✔       |
++---------+--------+--------+---------+-----------+---------+
+| 4       | ✔      | ✔      | v2      | ✔         |         |
 +---------+--------+--------+---------+-----------+---------+
 
 ----
@@ -101,9 +105,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .. |requirements| image:: https://requires.io/github/IceflowRE/cmt/requirements.svg?branch=main
    :target: https://requires.io/github/IceflowRE/cmt/requirements/?branch=main
-
-.. |codacy| image:: https://api.codacy.com/project/badge/Grade/a0b5e81fea174ef787b04f6a38ed4cf2
-   :target: https://app.codacy.com/project/IceflowRE/cmt/dashboard
 
 .. |codecov| image:: https://img.shields.io/codecov/c/github/IceflowRE/cmt/main.svg?label=coverage
    :target: https://codecov.io/gh/IceflowRE/cmt
