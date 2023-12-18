@@ -1,9 +1,9 @@
 *************************
 CMT - Celaria Map Toolkit
 *************************
-|maintained| |programming language| |license|
+|status| |programming language| |license|
 
-|github actions| |readthedocs| |requirements| |codecov|
+|github actions| |readthedocs| |codecov|
 
 |pypi|
 
@@ -86,7 +86,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .. Badges.
 
-.. |maintained| image:: https://img.shields.io/badge/maintained-yes-brightgreen.svg
+.. |status| image:: https://img.shields.io/badge/status-archived-red.svg
 
 .. |programming language| image:: https://img.shields.io/badge/language-Python_3.7-orange.svg
    :target: https://www.python.org/
@@ -94,7 +94,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .. |license| image:: https://img.shields.io/badge/License-MIT-blue.svg
    :target: https://opensource.org/licenses/MIT
 
-.. |github actions| image:: https://github.com/IceflowRE/cmt/workflows/Build/badge.svg
+.. |github actions| image:: https://img.shields.io/github/actions/workflow/status/IceflowRE/cmt/build.yml
    :target: https://github.com/IceflowRE/cmt/actions
 
 .. |readthedocs| image:: https://readthedocs.org/projects/cmt/badge/?version=latest
@@ -102,9 +102,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .. |pypi| image:: https://img.shields.io/pypi/v/cmt.svg
    :target: https://pypi.org/project/CMT/
-
-.. |requirements| image:: https://requires.io/github/IceflowRE/cmt/requirements.svg?branch=main
-   :target: https://requires.io/github/IceflowRE/cmt/requirements/?branch=main
 
 .. |codecov| image:: https://img.shields.io/codecov/c/github/IceflowRE/cmt/main.svg?label=coverage
    :target: https://codecov.io/gh/IceflowRE/cmt
